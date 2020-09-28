@@ -38,8 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e")
     , @NamedQuery(name = "Evento.findById", query = "SELECT e FROM Evento e WHERE e.id = :id")
     , @NamedQuery(name = "Evento.findByFechaInicio", query = "SELECT e FROM Evento e WHERE e.fechaInicio = :fechaInicio")
-    , @NamedQuery(name = "Evento.findByFechaFin", query = "SELECT e FROM Evento e WHERE e.fechaFin = :fechaFin")
-    , @NamedQuery(name = "Evento.findByLugar", query = "SELECT e FROM Evento e WHERE e.lugar = :lugar")})
+    , @NamedQuery(name = "Evento.findByFechaFin", query = "SELECT e FROM Evento e WHERE e.fechaFin = :fechaFin")})
 public class Evento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,14 +58,14 @@ public class Evento implements Serializable {
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFin;
-    @Basic(optional = false)
-    @Column(nullable = false)
-    private int lugar;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento1")
+    private List<Agenda> agendaList;
     @JoinColumn(name = "actividad", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private Actividad actividad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento1")
-    private List<Agenda> agendaList;
+    @JoinColumn(name = "lugar", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false)
+    private Lugar lugar;
 
     public Evento() {
     }
@@ -75,11 +74,10 @@ public class Evento implements Serializable {
         this.id = id;
     }
 
-    public Evento(Integer id, String descripcion, Date fechaInicio, int lugar) {
+    public Evento(Integer id, String descripcion, Date fechaInicio) {
         this.id = id;
         this.descripcion = descripcion;
         this.fechaInicio = fechaInicio;
-        this.lugar = lugar;
     }
 
     public Integer getId() {
@@ -114,12 +112,13 @@ public class Evento implements Serializable {
         this.fechaFin = fechaFin;
     }
 
-    public int getLugar() {
-        return lugar;
+    @XmlTransient
+    public List<Agenda> getAgendaList() {
+        return agendaList;
     }
 
-    public void setLugar(int lugar) {
-        this.lugar = lugar;
+    public void setAgendaList(List<Agenda> agendaList) {
+        this.agendaList = agendaList;
     }
 
     public Actividad getActividad() {
@@ -130,13 +129,12 @@ public class Evento implements Serializable {
         this.actividad = actividad;
     }
 
-    @XmlTransient
-    public List<Agenda> getAgendaList() {
-        return agendaList;
+    public Lugar getLugar() {
+        return lugar;
     }
 
-    public void setAgendaList(List<Agenda> agendaList) {
-        this.agendaList = agendaList;
+    public void setLugar(Lugar lugar) {
+        this.lugar = lugar;
     }
 
     @Override

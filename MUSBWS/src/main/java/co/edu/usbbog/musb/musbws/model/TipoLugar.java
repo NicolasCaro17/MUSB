@@ -8,14 +8,14 @@ package co.edu.usbbog.musb.musbws.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -25,13 +25,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author nicos
  */
 @Entity
-@Table(catalog = "musb_db", schema = "")
+@Table(name = "tipo_lugar", catalog = "musb_db", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r")
-    , @NamedQuery(name = "Rol.findById", query = "SELECT r FROM Rol r WHERE r.id = :id")
-    , @NamedQuery(name = "Rol.findByNombre", query = "SELECT r FROM Rol r WHERE r.nombre = :nombre")})
-public class Rol implements Serializable {
+    @NamedQuery(name = "TipoLugar.findAll", query = "SELECT t FROM TipoLugar t")
+    , @NamedQuery(name = "TipoLugar.findById", query = "SELECT t FROM TipoLugar t WHERE t.id = :id")
+    , @NamedQuery(name = "TipoLugar.findByNombre", query = "SELECT t FROM TipoLugar t WHERE t.nombre = :nombre")})
+public class TipoLugar implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,24 +39,26 @@ public class Rol implements Serializable {
     @Column(nullable = false)
     private Integer id;
     @Basic(optional = false)
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 45)
     private String nombre;
-    @JoinTable(name = "usuario_rol", joinColumns = {
-        @JoinColumn(name = "rol", referencedColumnName = "id", nullable = false)}, inverseJoinColumns = {
-        @JoinColumn(name = "usuario", referencedColumnName = "codigo", nullable = false)})
-    @ManyToMany
-    private List<Usuario> usuarioList;
+    @Basic(optional = false)
+    @Lob
+    @Column(nullable = false, length = 2147483647)
+    private String descripcion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipo")
+    private List<Lugar> lugarList;
 
-    public Rol() {
+    public TipoLugar() {
     }
 
-    public Rol(Integer id) {
+    public TipoLugar(Integer id) {
         this.id = id;
     }
 
-    public Rol(Integer id, String nombre) {
+    public TipoLugar(Integer id, String nombre, String descripcion) {
         this.id = id;
         this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
     public Integer getId() {
@@ -75,13 +77,21 @@ public class Rol implements Serializable {
         this.nombre = nombre;
     }
 
-    @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    @XmlTransient
+    public List<Lugar> getLugarList() {
+        return lugarList;
+    }
+
+    public void setLugarList(List<Lugar> lugarList) {
+        this.lugarList = lugarList;
     }
 
     @Override
@@ -94,10 +104,10 @@ public class Rol implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Rol)) {
+        if (!(object instanceof TipoLugar)) {
             return false;
         }
-        Rol other = (Rol) object;
+        TipoLugar other = (TipoLugar) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -106,7 +116,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.Rol[ id=" + id + " ]";
+        return "co.edu.usbbog.musb.musbws.model.TipoLugar[ id=" + id + " ]";
     }
     
 }

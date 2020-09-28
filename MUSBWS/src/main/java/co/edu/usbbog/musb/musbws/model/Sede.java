@@ -63,6 +63,8 @@ public class Sede implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false)
     private int telefono;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sede")
+    private List<Lugar> lugarList;
     @OneToMany(mappedBy = "sede")
     private List<Noticia> noticiaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sede")
@@ -139,6 +141,15 @@ public class Sede implements Serializable {
 
     public void setTelefono(int telefono) {
         this.telefono = telefono;
+    }
+
+    @XmlTransient
+    public List<Lugar> getLugarList() {
+        return lugarList;
+    }
+
+    public void setLugarList(List<Lugar> lugarList) {
+        this.lugarList = lugarList;
     }
 
     @XmlTransient

@@ -77,6 +77,12 @@ public class Usuario implements Serializable {
     private Integer telefono;
     @ManyToMany(mappedBy = "usuarioList")
     private List<Rol> rolList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario1")
+    private List<Agenda> agendaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario1")
+    private List<Amigo> amigoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario2")
+    private List<Amigo> amigoList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "envia")
     private List<Chat> chatList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recibe")
@@ -84,12 +90,6 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "programa", referencedColumnName = "id")
     @ManyToOne
     private Programa programa;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario1")
-    private List<Agenda> agendaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario1")
-    private List<Amigo> amigoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario2")
-    private List<Amigo> amigoList1;
 
     public Usuario() {
     }
@@ -199,32 +199,6 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public List<Chat> getChatList() {
-        return chatList;
-    }
-
-    public void setChatList(List<Chat> chatList) {
-        this.chatList = chatList;
-    }
-
-    @XmlTransient
-    public List<Chat> getChatList1() {
-        return chatList1;
-    }
-
-    public void setChatList1(List<Chat> chatList1) {
-        this.chatList1 = chatList1;
-    }
-
-    public Programa getPrograma() {
-        return programa;
-    }
-
-    public void setPrograma(Programa programa) {
-        this.programa = programa;
-    }
-
-    @XmlTransient
     public List<Agenda> getAgendaList() {
         return agendaList;
     }
@@ -249,6 +223,32 @@ public class Usuario implements Serializable {
 
     public void setAmigoList1(List<Amigo> amigoList1) {
         this.amigoList1 = amigoList1;
+    }
+
+    @XmlTransient
+    public List<Chat> getChatList() {
+        return chatList;
+    }
+
+    public void setChatList(List<Chat> chatList) {
+        this.chatList = chatList;
+    }
+
+    @XmlTransient
+    public List<Chat> getChatList1() {
+        return chatList1;
+    }
+
+    public void setChatList1(List<Chat> chatList1) {
+        this.chatList1 = chatList1;
+    }
+
+    public Programa getPrograma() {
+        return programa;
+    }
+
+    public void setPrograma(Programa programa) {
+        this.programa = programa;
     }
 
     @Override

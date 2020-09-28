@@ -60,9 +60,9 @@ public class Programa implements Serializable {
     @ManyToOne(optional = false)
     private Facultad facultad;
     @OneToMany(mappedBy = "programa")
-    private List<Usuario> usuarioList;
-    @OneToMany(mappedBy = "programa")
     private List<Noticia> noticiaList;
+    @OneToMany(mappedBy = "programa")
+    private List<Usuario> usuarioList;
 
     public Programa() {
     }
@@ -128,21 +128,21 @@ public class Programa implements Serializable {
     }
 
     @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
-
-    @XmlTransient
     public List<Noticia> getNoticiaList() {
         return noticiaList;
     }
 
     public void setNoticiaList(List<Noticia> noticiaList) {
         this.noticiaList = noticiaList;
+    }
+
+    @XmlTransient
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     @Override

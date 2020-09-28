@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -20,8 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
-
 
 /**
  *
@@ -31,11 +30,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(catalog = "musb_db", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Actividad.findAll", query = "SELECT a FROM Actividad a")
-    , @NamedQuery(name = "Actividad.findById", query = "SELECT a FROM Actividad a WHERE a.id = :id")
-    , @NamedQuery(name = "Actividad.findByNombre", query = "SELECT a FROM Actividad a WHERE a.nombre = :nombre")
-    , @NamedQuery(name = "Actividad.findByDescripcion", query = "SELECT a FROM Actividad a WHERE a.descripcion = :descripcion")})
-public class Actividad implements Serializable {
+    @NamedQuery(name = "Lugar.findAll", query = "SELECT l FROM Lugar l")
+    , @NamedQuery(name = "Lugar.findById", query = "SELECT l FROM Lugar l WHERE l.id = :id")
+    , @NamedQuery(name = "Lugar.findByNombre", query = "SELECT l FROM Lugar l WHERE l.nombre = :nombre")
+    , @NamedQuery(name = "Lugar.findByDescripcion", query = "SELECT l FROM Lugar l WHERE l.descripcion = :descripcion")
+    , @NamedQuery(name = "Lugar.findByUbicacion", query = "SELECT l FROM Lugar l WHERE l.ubicacion = :ubicacion")})
+public class Lugar implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,23 +48,32 @@ public class Actividad implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false, length = 45)
     private String descripcion;
-    @JoinColumn(name = "tipo", referencedColumnName = "id(3)", nullable = false)
+    @Basic(optional = false)
+    @Column(nullable = false, length = 45)
+    private String ubicacion;
+    @Lob
+    private byte[] foto;
+    @JoinColumn(name = "sede", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
-    private TipoActividad tipo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividad")
+    private Sede sede;
+    @JoinColumn(name = "tipo", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false)
+    private TipoLugar tipo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lugar")
     private List<Evento> eventoList;
 
-    public Actividad() {
+    public Lugar() {
     }
 
-    public Actividad(Integer id) {
+    public Lugar(Integer id) {
         this.id = id;
     }
 
-    public Actividad(Integer id, String nombre, String descripcion) {
+    public Lugar(Integer id, String nombre, String descripcion, String ubicacion) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.ubicacion = ubicacion;
     }
 
     public Integer getId() {
@@ -91,11 +100,35 @@ public class Actividad implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public TipoActividad getTipo() {
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    public Sede getSede() {
+        return sede;
+    }
+
+    public void setSede(Sede sede) {
+        this.sede = sede;
+    }
+
+    public TipoLugar getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoActividad tipo) {
+    public void setTipo(TipoLugar tipo) {
         this.tipo = tipo;
     }
 
@@ -118,10 +151,10 @@ public class Actividad implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Actividad)) {
+        if (!(object instanceof Lugar)) {
             return false;
         }
-        Actividad other = (Actividad) object;
+        Lugar other = (Lugar) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -130,7 +163,7 @@ public class Actividad implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.Actividad[ id=" + id + " ]";
+        return "co.edu.usbbog.musb.musbws.model.Lugar[ id=" + id + " ]";
     }
     
 }

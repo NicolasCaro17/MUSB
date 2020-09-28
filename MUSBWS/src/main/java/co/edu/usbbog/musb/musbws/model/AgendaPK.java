@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+
 /**
  *
  * @author nicos
@@ -17,6 +18,9 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class AgendaPK implements Serializable {
 
+    /**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	@Basic(optional = false)
     @Column(nullable = false)
