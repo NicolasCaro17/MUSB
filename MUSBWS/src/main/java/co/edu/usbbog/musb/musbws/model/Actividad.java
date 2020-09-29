@@ -48,7 +48,7 @@ public class Actividad implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false, length = 45)
     private String descripcion;
-    @JoinColumn(name = "tipo", referencedColumnName = "id(3)", nullable = false)
+    @JoinColumn(name = "tipo", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private TipoActividad tipo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividad")

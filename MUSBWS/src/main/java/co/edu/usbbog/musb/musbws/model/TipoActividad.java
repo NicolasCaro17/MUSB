@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoActividad.findAll", query = "SELECT t FROM TipoActividad t")
-    , @NamedQuery(name = "TipoActividad.findById3", query = "SELECT t FROM TipoActividad t WHERE t.id3 = :id3")
+    , @NamedQuery(name = "TipoActividad.findById3", query = "SELECT t FROM TipoActividad t WHERE t.id3 = :id")
     , @NamedQuery(name = "TipoActividad.findByNombre", query = "SELECT t FROM TipoActividad t WHERE t.nombre = :nombre")})
 public class TipoActividad implements Serializable {
 
@@ -39,8 +39,8 @@ public class TipoActividad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id(3)", nullable = false)
-    private Integer id3;
+    @Column(name = "id", nullable = false)
+    private Integer id;
     @Basic(optional = false)
     @Column(nullable = false, length = 45)
     private String nombre;
@@ -54,22 +54,22 @@ public class TipoActividad implements Serializable {
     public TipoActividad() {
     }
 
-    public TipoActividad(Integer id3) {
-        this.id3 = id3;
+    public TipoActividad(Integer id) {
+        this.id = id;
     }
 
-    public TipoActividad(Integer id3, String nombre, String descripcion) {
-        this.id3 = id3;
+    public TipoActividad(Integer id, String nombre, String descripcion) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
-    public Integer getId3() {
-        return id3;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId3(Integer id3) {
-        this.id3 = id3;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -100,7 +100,7 @@ public class TipoActividad implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id3 != null ? id3.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -111,7 +111,7 @@ public class TipoActividad implements Serializable {
             return false;
         }
         TipoActividad other = (TipoActividad) object;
-        if ((this.id3 == null && other.id3 != null) || (this.id3 != null && !this.id3.equals(other.id3))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -119,7 +119,7 @@ public class TipoActividad implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.TipoActividad[ id3=" + id3 + " ]";
+        return "co.edu.usbbog.musb.musbws.model.TipoActividad[ id=" + id + " ]";
     }
     
 }
