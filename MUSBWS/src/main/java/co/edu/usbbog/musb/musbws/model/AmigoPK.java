@@ -78,7 +78,7 @@ public class AmigoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.AmigoPK[ usuario=" + usuario + ", amigo=" + amigo + " ]";
+        return "paquete.AmigoPK[ usuario=" + usuario + ", amigo=" + amigo + " ]";
     }
     
 }

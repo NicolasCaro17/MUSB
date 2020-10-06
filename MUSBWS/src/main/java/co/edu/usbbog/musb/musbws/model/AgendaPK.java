@@ -17,7 +17,15 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class AgendaPK implements Serializable {
 
+<<<<<<< Updated upstream
     @Basic(optional = false)
+=======
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Basic(optional = false)
+>>>>>>> Stashed changes
     @Column(name = "usuario")
     private int usuario;
     @Basic(optional = false)
@@ -74,7 +82,7 @@ public class AgendaPK implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.AgendaPK[ usuario=" + usuario + ", evento=" + evento + " ]";
+        return "paquete.AgendaPK[ usuario=" + usuario + ", evento=" + evento + " ]";
     }
     
 }

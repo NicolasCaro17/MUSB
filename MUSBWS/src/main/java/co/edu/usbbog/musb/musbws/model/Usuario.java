@@ -272,7 +272,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.Usuario[ codigo=" + codigo + " ]";
+        return "paquete.Usuario[ codigo=" + codigo + " ]";
     }
     
 }

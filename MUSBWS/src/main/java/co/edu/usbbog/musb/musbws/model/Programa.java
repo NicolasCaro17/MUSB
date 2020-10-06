@@ -167,7 +167,7 @@ public class Programa implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.Programa[ id=" + id + " ]";
+        return "paquete.Programa[ id=" + id + " ]";
     }
     
 }

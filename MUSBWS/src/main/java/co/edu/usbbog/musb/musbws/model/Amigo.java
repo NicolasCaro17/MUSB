@@ -141,7 +141,7 @@ public class Amigo implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.Amigo[ amigoPK=" + amigoPK + " ]";
+        return "paquete.Amigo[ amigoPK=" + amigoPK + " ]";
     }
     
 }

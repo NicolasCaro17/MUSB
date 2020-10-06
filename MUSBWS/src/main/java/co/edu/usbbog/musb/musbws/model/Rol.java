@@ -106,7 +106,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.Rol[ id=" + id + " ]";
+        return "paquete.Rol[ id=" + id + " ]";
     }
     
 }

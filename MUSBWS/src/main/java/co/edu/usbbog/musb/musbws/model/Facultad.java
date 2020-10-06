@@ -168,7 +168,7 @@ public class Facultad implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.Facultad[ id=" + id + " ]";
+        return "paquete.Facultad[ id=" + id + " ]";
     }
     
 }

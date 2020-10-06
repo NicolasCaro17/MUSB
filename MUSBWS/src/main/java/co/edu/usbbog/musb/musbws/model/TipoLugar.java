@@ -116,7 +116,7 @@ public class TipoLugar implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.TipoLugar[ id=" + id + " ]";
+        return "paquete.TipoLugar[ id=" + id + " ]";
     }
     
 }

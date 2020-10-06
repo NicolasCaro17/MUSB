@@ -116,7 +116,7 @@ public class TipoActividad implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.TipoActividad[ id=" + id + " ]";
+        return "paquete.TipoActividad[ id=" + id + " ]";
     }
     
 }

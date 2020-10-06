@@ -192,7 +192,7 @@ public class Sede implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.Sede[ id=" + id + " ]";
+        return "paquete.Sede[ id=" + id + " ]";
     }
     
 }

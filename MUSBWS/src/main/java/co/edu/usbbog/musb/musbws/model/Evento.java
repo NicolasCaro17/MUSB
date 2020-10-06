@@ -159,7 +159,7 @@ public class Evento implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.usbbog.musb.musbws.model.Evento[ id=" + id + " ]";
+        return "paquete.Evento[ id=" + id + " ]";
     }
     
 }
