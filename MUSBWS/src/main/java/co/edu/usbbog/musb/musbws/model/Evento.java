@@ -29,10 +29,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author nicos
+ * @author nico_
  */
 @Entity
-@Table(catalog = "musb_db", schema = "")
+@Table(name = "evento")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e")
@@ -45,14 +45,14 @@ public class Evento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
     @Lob
-    @Column(nullable = false, length = 2147483647)
+    @Column(name = "descripcion")
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "fecha_inicio", nullable = false)
+    @Column(name = "fecha_inicio")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInicio;
     @Column(name = "fecha_fin")
@@ -60,10 +60,10 @@ public class Evento implements Serializable {
     private Date fechaFin;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento1")
     private List<Agenda> agendaList;
-    @JoinColumn(name = "actividad", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "actividad", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Actividad actividad;
-    @JoinColumn(name = "lugar", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "lugar", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Lugar lugar;
 

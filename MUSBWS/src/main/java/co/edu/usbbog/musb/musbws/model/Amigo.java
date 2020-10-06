@@ -22,10 +22,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author nicos
+ * @author nico_
  */
 @Entity
-@Table(catalog = "musb_db", schema = "")
+@Table(name = "amigo")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Amigo.findAll", query = "SELECT a FROM Amigo a")
@@ -40,18 +40,18 @@ public class Amigo implements Serializable {
     @EmbeddedId
     protected AmigoPK amigoPK;
     @Basic(optional = false)
-    @Column(name = "fecha_inicio", nullable = false)
+    @Column(name = "fecha_inicio")
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
-    @Column(length = 20)
+    @Column(name = "relacion")
     private String relacion;
-    @JoinColumn(name = "amigo", referencedColumnName = "codigo", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "amigo", referencedColumnName = "codigo", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usuario usuario1;
-    @JoinColumn(name = "usuario", referencedColumnName = "codigo", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "usuario", referencedColumnName = "codigo", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usuario usuario2;
 

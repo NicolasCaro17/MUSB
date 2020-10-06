@@ -25,10 +25,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author nicos
+ * @author nico_
  */
 @Entity
-@Table(catalog = "musb_db", schema = "")
+@Table(name = "facultad")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Facultad.findAll", query = "SELECT f FROM Facultad f")
@@ -43,25 +43,25 @@ public class Facultad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(nullable = false, length = 80)
+    @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
-    @Column(nullable = false, length = 80)
+    @Column(name = "decano")
     private String decano;
     @Basic(optional = false)
-    @Column(nullable = false, length = 80)
+    @Column(name = "oficina")
     private String oficina;
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "ext")
     private int ext;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "facultad")
     private List<Programa> programaList;
     @OneToMany(mappedBy = "facultad")
     private List<Noticia> noticiaList;
-    @JoinColumn(name = "sede", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "sede", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Sede sede;
 

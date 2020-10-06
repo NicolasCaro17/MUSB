@@ -23,10 +23,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author nicos
+ * @author nico_
  */
 @Entity
-@Table(catalog = "musb_db", schema = "")
+@Table(name = "noticia")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Noticia.findAll", query = "SELECT n FROM Noticia n")
@@ -38,20 +38,21 @@ public class Noticia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(nullable = false, length = 45)
+    @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Basic(optional = false)
     @Lob
-    @Column(nullable = false, length = 2147483647)
+    @Column(name = "descripcion")
     private String descripcion;
     @Lob
+    @Column(name = "foto")
     private byte[] foto;
     @JoinColumn(name = "facultad", referencedColumnName = "id")
     @ManyToOne

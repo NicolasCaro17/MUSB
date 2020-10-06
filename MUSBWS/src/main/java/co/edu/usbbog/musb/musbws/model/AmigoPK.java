@@ -10,10 +10,9 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-
 /**
  *
- * @author nicos
+ * @author nico_
  */
 @Embeddable
 public class AmigoPK implements Serializable {
@@ -23,10 +22,10 @@ public class AmigoPK implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "usuario")
     private int usuario;
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "amigo")
     private int amigo;
 
     public AmigoPK() {

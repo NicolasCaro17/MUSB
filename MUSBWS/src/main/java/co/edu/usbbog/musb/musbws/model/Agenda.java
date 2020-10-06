@@ -19,10 +19,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author nicos
+ * @author nico_
  */
 @Entity
-@Table(catalog = "musb_db", schema = "")
+@Table(name = "agenda")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Agenda.findAll", query = "SELECT a FROM Agenda a")
@@ -35,12 +35,12 @@ public class Agenda implements Serializable {
     @EmbeddedId
     protected AgendaPK agendaPK;
     @Basic(optional = false)
-    @Column(nullable = false, length = 12)
+    @Column(name = "papel")
     private String papel;
-    @JoinColumn(name = "evento", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "evento", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Evento evento1;
-    @JoinColumn(name = "usuario", referencedColumnName = "codigo", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "usuario", referencedColumnName = "codigo", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usuario usuario1;
 

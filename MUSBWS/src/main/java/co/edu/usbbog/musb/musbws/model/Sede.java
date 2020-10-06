@@ -23,10 +23,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author nicos
+ * @author nico_
  */
 @Entity
-@Table(catalog = "musb_db", schema = "")
+@Table(name = "sede")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Sede.findAll", query = "SELECT s FROM Sede s")
@@ -43,25 +43,25 @@ public class Sede implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(nullable = false, length = 45)
+    @Column(name = "ciudad")
     private String ciudad;
     @Basic(optional = false)
-    @Column(name = "url_mapa", nullable = false, length = 512)
+    @Column(name = "url_mapa")
     private String urlMapa;
     @Basic(optional = false)
-    @Column(nullable = false, length = 80)
+    @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
-    @Column(nullable = false, length = 80)
+    @Column(name = "rector")
     private String rector;
     @Basic(optional = false)
-    @Column(nullable = false, length = 150)
+    @Column(name = "direccion")
     private String direccion;
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "telefono")
     private int telefono;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sede")
     private List<Lugar> lugarList;

@@ -22,10 +22,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author nicos
+ * @author nico_
  */
 @Entity
-@Table(name = "tipo_lugar", catalog = "musb_db", schema = "")
+@Table(name = "tipo_lugar")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoLugar.findAll", query = "SELECT t FROM TipoLugar t")
@@ -36,14 +36,14 @@ public class TipoLugar implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(nullable = false, length = 45)
+    @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
     @Lob
-    @Column(nullable = false, length = 2147483647)
+    @Column(name = "descripcion")
     private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipo")
     private List<Lugar> lugarList;

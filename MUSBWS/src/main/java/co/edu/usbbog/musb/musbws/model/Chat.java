@@ -21,15 +21,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author nicos
+ * @author nico_
  */
 @Entity
-@Table(catalog = "musb_db", schema = "")
+@Table(name = "chat")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Chat.findAll", query = "SELECT c FROM Chat c")
@@ -42,23 +41,23 @@ public class Chat implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
     @Lob
-    @Column(nullable = false, length = 2147483647)
+    @Column(name = "mensaje")
     private String mensaje;
     @Basic(optional = false)
-    @Column(name = "marca_tiempo", nullable = false)
+    @Column(name = "marca_tiempo")
     @Temporal(TemporalType.TIMESTAMP)
     private Date marcaTiempo;
     @Basic(optional = false)
-    @Column(nullable = false, length = 15)
+    @Column(name = "estado")
     private String estado;
-    @JoinColumn(name = "envia", referencedColumnName = "codigo", nullable = false)
+    @JoinColumn(name = "envia", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private Usuario envia;
-    @JoinColumn(name = "recibe", referencedColumnName = "codigo", nullable = false)
+    @JoinColumn(name = "recibe", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private Usuario recibe;
 

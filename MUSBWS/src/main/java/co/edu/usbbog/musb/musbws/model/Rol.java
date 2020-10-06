@@ -22,10 +22,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author nicos
+ * @author nico_
  */
 @Entity
-@Table(catalog = "musb_db", schema = "")
+@Table(name = "rol")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r")
@@ -36,14 +36,14 @@ public class Rol implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(nullable = false, length = 50)
+    @Column(name = "nombre")
     private String nombre;
     @JoinTable(name = "usuario_rol", joinColumns = {
-        @JoinColumn(name = "rol", referencedColumnName = "id", nullable = false)}, inverseJoinColumns = {
-        @JoinColumn(name = "usuario", referencedColumnName = "codigo", nullable = false)})
+        @JoinColumn(name = "rol", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "usuario", referencedColumnName = "codigo")})
     @ManyToMany
     private List<Usuario> usuarioList;
 

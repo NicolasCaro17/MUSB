@@ -11,8 +11,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -24,29 +22,28 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author nicos
+ * @author nico_
  */
 @Entity
-@Table(name = "tipo_actividad", catalog = "musb_db", schema = "")
+@Table(name = "tipo_actividad")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoActividad.findAll", query = "SELECT t FROM TipoActividad t")
-    , @NamedQuery(name = "TipoActividad.findById3", query = "SELECT t FROM TipoActividad t WHERE t.id3 = :id")
+    , @NamedQuery(name = "TipoActividad.findById", query = "SELECT t FROM TipoActividad t WHERE t.id = :id")
     , @NamedQuery(name = "TipoActividad.findByNombre", query = "SELECT t FROM TipoActividad t WHERE t.nombre = :nombre")})
 public class TipoActividad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(nullable = false, length = 45)
+    @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
     @Lob
-    @Column(nullable = false, length = 2147483647)
+    @Column(name = "descripcion")
     private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipo")
     private List<Actividad> actividadList;

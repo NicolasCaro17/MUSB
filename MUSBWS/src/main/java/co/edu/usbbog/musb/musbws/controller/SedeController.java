@@ -12,8 +12,18 @@ import co.edu.usbbog.musb.musbws.service.ISedeService;
 public class SedeController {
 	@Autowired
 	ISedeService sedeService;
+	
 	@PostMapping("/crearSede")
 	public String crearSede(@RequestBody Sede sede) {
-		return sedeService.crearSede(sede);
+		return sedeService.crearSede(sede);		
 	}
+	
+	@PostMapping("/eliminarSede")
+	public String eliminarSede(@RequestBody Sede sede) {
+		return sedeService.eliminarSede(sede);
+	}
+	
+	
+	
+	
 }

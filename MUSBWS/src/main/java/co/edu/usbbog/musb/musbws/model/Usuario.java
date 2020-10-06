@@ -20,18 +20,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author nicos
+ * @author nico_
  */
 @Entity
-@Table(catalog = "musb_db", schema = "", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"correo"})
-    , @UniqueConstraint(columnNames = {"num_doc"})})
+@Table(name = "usuario")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
@@ -49,31 +46,33 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "codigo")
     private Integer codigo;
     @Basic(optional = false)
-    @Column(name = "tipo_documento", nullable = false, length = 45)
+    @Column(name = "tipo_documento")
     private String tipoDocumento;
     @Basic(optional = false)
-    @Column(name = "num_doc", nullable = false)
+    @Column(name = "num_doc")
     private int numDoc;
     @Basic(optional = false)
-    @Column(nullable = false, length = 80)
+    @Column(name = "nombres")
     private String nombres;
     @Basic(optional = false)
-    @Column(nullable = false, length = 80)
+    @Column(name = "apellidos")
     private String apellidos;
     @Basic(optional = false)
-    @Column(nullable = false, length = 60)
+    @Column(name = "correo")
     private String correo;
     @Basic(optional = false)
-    @Column(nullable = false, length = 256)
+    @Column(name = "contrasenia")
     private String contrasenia;
     @Basic(optional = false)
-    @Column(nullable = false, length = 50)
+    @Column(name = "nacionalidad")
     private String nacionalidad;
     @Lob
+    @Column(name = "foto")
     private byte[] foto;
+    @Column(name = "telefono")
     private Integer telefono;
     @ManyToMany(mappedBy = "usuarioList")
     private List<Rol> rolList;

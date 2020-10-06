@@ -21,14 +21,12 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-
-
 /**
  *
- * @author nicos
+ * @author nico_
  */
 @Entity
-@Table(catalog = "musb_db", schema = "")
+@Table(name = "actividad")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Actividad.findAll", query = "SELECT a FROM Actividad a")
@@ -40,15 +38,15 @@ public class Actividad implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(nullable = false, length = 45)
+    @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
-    @Column(nullable = false, length = 45)
+    @Column(name = "descripcion")
     private String descripcion;
-    @JoinColumn(name = "tipo", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "tipo", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private TipoActividad tipo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividad")
