@@ -1,7 +1,5 @@
 package co.edu.usbbog.musb.musbws.service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,16 +40,15 @@ public class RolService implements IRolService {
 	@Override
     public String modificarRol(Rol rol) {
         try {
-        	int busqueda= rol.getId();
-            if(rolRepo.getOne(busqueda)!=null) {
+            if(rolRepo.existsById(rol.getId())) {
                 rolRepo.delete(rol);
                 rolRepo.save(rol);
                 return "Se modifico el rol";
             }else {
-                return "No se modifico el rol";
+                return "No se encontro el rol";
             }
         } catch (IllegalArgumentException e) {
-            return "No se modifico el rol: " + e.getMessage();
+            return "No se encontro el rol: " + e.getMessage();
         }
     }
 
@@ -66,24 +63,24 @@ public class RolService implements IRolService {
 	}
 
 	@Override
-	public String eliminarRol(Rol rol) {
-		try {
-			if(rolRepo.getOne(rol.getId())!=null) {
-				rolRepo.delete(rol);
-				return "Se elimino el rol";
-			}else {
-			return "No Se elimino el rol";
-			}
-		} catch (IllegalArgumentException e) {
-			return "No Se elimino el rol: " + e.getMessage();
-		}
-	}
+    public String eliminarRol(Rol rol) {
+        try {
+            if (rolRepo.existsById(rol.getId())) {
+            rolRepo.delete(rol);
+            return "Se elimino el rol";
+            }else {
+                return "El rol no existe";
+            }
+        } catch (IllegalArgumentException e) {
+            return "No se elimino el rol: " + e.getMessage();
+        }
+    }
 
 	@Override
 	public Rol mostrarRol(int id) {
 		Rol rol= new Rol();
 		try {
-			if(rolRepo.getOne(id)!=null) {
+			if(rolRepo.existsById(id)) {
 				rol=rolRepo.getOne(id);
 				return rol;
 			}else {
