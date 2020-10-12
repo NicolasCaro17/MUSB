@@ -30,7 +30,7 @@ public class FacultadController {
 	}
 
 	@PostMapping("/eliminarFacultad")
-	public String eliminarTienda(@RequestBody Facultad borrarFacultad) {
+	public String eliminarFacultad(@RequestBody Facultad borrarFacultad) {
 		JSONObject respuesta = new JSONObject();
 		if (facultadService.eliminarFacultad(borrarFacultad).equals("Se elimino la facultad")) {
 			respuesta.put("respuesta", true);
