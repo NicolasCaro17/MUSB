@@ -1,5 +1,6 @@
 package co.edu.usbbog.musb.musbws.service;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,24 +26,23 @@ public class SedeService implements ISedeService{
 
 	@Override
 	public String modificarSede(Sede sede) {
-		try {
-			if (mostrarSede(sede.getId())!= null) {
-				sedeRepo.delete(sede);
-				sedeRepo.save(sede);
-				return "Se modifico la Sede";
-			}else {
-				return "No se pudo modificar la Sede";
-				
-			}
-		}catch(IllegalArgumentException e) {
-			return "No se pudo modificar la sede" + e.getMessage();
-		}
+		  try {
+	            if(sedeRepo.existsById(sede.getId())) {
+	                sedeRepo.delete(sede);
+	                sedeRepo.save(sede);
+	                return "Se modifico la sede";
+	            }else {
+	                return "No se encontro la sede";
+	            }
+	        } catch (IllegalArgumentException e) {
+	            return "No se encontro la sede: " + e.getMessage();
+	        }
 	}
 
 	@Override
 	public String eliminarSede(Sede sede) {
 		try{
-			if(sede.getId()!= null) {
+			if(sedeRepo.existsById(sede.getId())) {
 			sedeRepo.delete(sede);
 			return "Se elimino la sede";
 			}else {
@@ -64,16 +64,7 @@ public class SedeService implements ISedeService{
 		}
 	}
 
-	@Override
-	public List<Sede> findBySede(String sede) {
-		try {
-			List<Sede> listaSede =sedeRepo.findAll();
-			return listaSede;
-		}catch(IllegalArgumentException e) {
-			return null;
-		}
-		
-	}
+
 	
 	@Override
 	public Sede mostrarSede(int id) {
@@ -84,6 +75,17 @@ public class SedeService implements ISedeService{
 		}catch(IllegalArgumentException e) {
 		return null;
 	}
+	}
+
+	@Override
+	public List<Sede> findAll() {
+		   List<Sede> listaSede = new ArrayList<Sede>();
+	        try {
+	            listaSede = sedeRepo.findAll();
+	            return listaSede;
+	        } catch (IllegalArgumentException e) {
+	            return listaSede;
+	        }
 	}
 	
 }

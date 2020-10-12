@@ -9,7 +9,7 @@ public interface ISedeService {
 	public String modificarSede(Sede sede);
 	public String eliminarSede(Sede sede);
 	public Integer contarSede();
-	public List<Sede>findBySede(String sede);
+	public List<Sede>findAll();
 	public Sede mostrarSede(int id);
 	
 	
