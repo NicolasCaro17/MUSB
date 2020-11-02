@@ -12,20 +12,16 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author nico_
+ * @author nicos
  */
 @Embeddable
 public class AgendaPK implements Serializable {
-
-
-    @Basic(optional = false)
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Basic(optional = false)
-
     @Column(name = "usuario")
     private int usuario;
     @Basic(optional = false)
@@ -82,7 +78,7 @@ public class AgendaPK implements Serializable {
 
     @Override
     public String toString() {
-        return "paquete.AgendaPK[ usuario=" + usuario + ", evento=" + evento + " ]";
+        return "co.edu.usbbog.musb.musbws.model.AgendaPK[ usuario=" + usuario + ", evento=" + evento + " ]";
     }
     
 }

@@ -21,7 +21,7 @@ public class NoticiaController {
 	@PostMapping("/crearNoticia")
 	public String crearNoticia(@RequestBody Noticia noticia) {
 		JSONObject respuesta = new JSONObject();
-		if (noticiaService.crearNoticia(noticia).equals("Se guardo noticia")) {
+		if (noticiaService.crearNoticia(noticia).equals("Se agrego la noticia")) {
 			respuesta.put("respuesta", true);
 			return respuesta.toString();
 		} else {
@@ -98,7 +98,7 @@ public class NoticiaController {
 	@PostMapping("/modificarNoticia")
 	public String modificarNoticia(@RequestBody Noticia noticia) {
 		JSONObject respuesta = new JSONObject();
-		if (noticiaService.modificarNoticia(noticia).equals("Se modifico Noticia")) {
+		if (noticiaService.modificarNoticia(noticia).equals("Se modifico noticia")) {
 			respuesta.put("respuesta", true);
 			return respuesta.toString();
 		} else {

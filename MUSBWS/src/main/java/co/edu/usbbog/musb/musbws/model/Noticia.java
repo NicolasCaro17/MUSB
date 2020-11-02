@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author nico_
+ * @author nicos
  */
 @Entity
 @Table(name = "noticia")
@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Noticia.findAll", query = "SELECT n FROM Noticia n")
     , @NamedQuery(name = "Noticia.findById", query = "SELECT n FROM Noticia n WHERE n.id = :id")
     , @NamedQuery(name = "Noticia.findByNombre", query = "SELECT n FROM Noticia n WHERE n.nombre = :nombre")
-    , @NamedQuery(name = "Noticia.findByFecha", query = "SELECT n FROM Noticia n WHERE n.fecha = :fecha")})
+    , @NamedQuery(name = "Noticia.findByFecha", query = "SELECT n FROM Noticia n WHERE n.fecha = :fecha")
+    , @NamedQuery(name = "Noticia.findByEstado", query = "SELECT n FROM Noticia n WHERE n.estado = :estado")})
 public class Noticia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,6 +55,9 @@ public class Noticia implements Serializable {
     @Lob
     @Column(name = "foto")
     private byte[] foto;
+    @Basic(optional = false)
+    @Column(name = "estado")
+    private String estado;
     @JoinColumn(name = "facultad", referencedColumnName = "id")
     @ManyToOne
     private Facultad facultad;
@@ -71,11 +75,12 @@ public class Noticia implements Serializable {
         this.id = id;
     }
 
-    public Noticia(Integer id, String nombre, Date fecha, String descripcion) {
+    public Noticia(Integer id, String nombre, Date fecha, String descripcion, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;
         this.descripcion = descripcion;
+        this.estado = estado;
     }
 
     public Integer getId() {
@@ -116,6 +121,14 @@ public class Noticia implements Serializable {
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Facultad getFacultad() {
@@ -164,7 +177,7 @@ public class Noticia implements Serializable {
 
     @Override
     public String toString() {
-        return "paquete.Noticia[ id=" + id + " ]";
+        return "co.edu.usbbog.musb.musbws.model.Noticia[ id=" + id + " ]";
     }
     
 }

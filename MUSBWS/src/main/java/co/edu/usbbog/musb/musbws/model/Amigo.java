@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author nico_
+ * @author nicos
  */
 @Entity
 @Table(name = "amigo")
@@ -141,7 +141,7 @@ public class Amigo implements Serializable {
 
     @Override
     public String toString() {
-        return "paquete.Amigo[ amigoPK=" + amigoPK + " ]";
+        return "co.edu.usbbog.musb.musbws.model.Amigo[ amigoPK=" + amigoPK + " ]";
     }
     
 }

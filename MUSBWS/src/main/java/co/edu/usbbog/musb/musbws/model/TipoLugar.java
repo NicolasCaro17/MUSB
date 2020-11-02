@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author nico_
+ * @author nicos
  */
 @Entity
 @Table(name = "tipo_lugar")
@@ -116,7 +116,7 @@ public class TipoLugar implements Serializable {
 
     @Override
     public String toString() {
-        return "paquete.TipoLugar[ id=" + id + " ]";
+        return "co.edu.usbbog.musb.musbws.model.TipoLugar[ id=" + id + " ]";
     }
     
 }

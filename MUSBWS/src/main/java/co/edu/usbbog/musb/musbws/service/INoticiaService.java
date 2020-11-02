@@ -12,4 +12,5 @@ public interface INoticiaService {
 	public List<Noticia> findAll();	
 	public String eliminarNoticia(Noticia noticia);
 	public Noticia mostrarNoticia(int id);
+	//public List<Noticia> getNotificaciones(Usuario user);
 }

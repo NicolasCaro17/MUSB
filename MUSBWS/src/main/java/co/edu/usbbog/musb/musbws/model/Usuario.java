@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author nico_
+ * @author nicos
  */
 @Entity
 @Table(name = "usuario")
@@ -272,7 +272,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "paquete.Usuario[ codigo=" + codigo + " ]";
+        return "co.edu.usbbog.musb.musbws.model.Usuario[ codigo=" + codigo + " ]";
     }
     
 }

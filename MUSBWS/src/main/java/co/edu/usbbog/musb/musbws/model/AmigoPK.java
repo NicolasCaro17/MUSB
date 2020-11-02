@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author nico_
+ * @author nicos
  */
 @Embeddable
 public class AmigoPK implements Serializable {
@@ -78,7 +78,7 @@ public class AmigoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "paquete.AmigoPK[ usuario=" + usuario + ", amigo=" + amigo + " ]";
+        return "co.edu.usbbog.musb.musbws.model.AmigoPK[ usuario=" + usuario + ", amigo=" + amigo + " ]";
     }
     
 }

@@ -20,7 +20,7 @@ public class TipoActividadController {
 	@PostMapping("/crearTipoActividad")
 	public String crearTipoActividad(@RequestBody TipoActividad tipoActividad) {
 		JSONObject respuesta = new JSONObject();
-		if (tipoAService.crearTipoDeActividad(tipoActividad).equals("Se guardo el tipoActividad")) {
+		if (tipoAService.crearTipoDeActividad(tipoActividad).equals("Se agrego el tipo de actividad")) {
 			respuesta.put("respuesta", true);
 			return respuesta.toString();
 		} else {
@@ -41,7 +41,7 @@ public class TipoActividadController {
 	@PostMapping("/eliminarTipoActividad")
 	public String eliminarTipoActividad(@RequestBody TipoActividad tactividad) {
 		JSONObject respuesta = new JSONObject();
-		if (tipoAService.eliminarTipoActividad(tactividad).equals("Se elimino el Tipo de actividad")) {
+		if (tipoAService.eliminarTipoActividad(tactividad).equals("Se elimino el tipo de actividad")) {
 			respuesta.put("respuesta", true);
 			return respuesta.toString();
 		} else {
@@ -88,7 +88,7 @@ public class TipoActividadController {
 	@PostMapping("/modificarTipoActividad")
 	public String modificarTipoActividad(@RequestBody TipoActividad tactividad) {
 		JSONObject respuesta = new JSONObject();
-		if (tipoAService.modificarTipoActividad(tactividad).equals("Se modifico el Tipo de actividad")) {
+		if (tipoAService.modificarTipoActividad(tactividad).equals("Se modifico el tipo de actividad")) {
 			respuesta.put("respuesta", true);
 			return respuesta.toString();
 		} else {

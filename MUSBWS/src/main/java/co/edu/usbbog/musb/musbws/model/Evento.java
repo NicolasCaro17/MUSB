@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author nico_
+ * @author nicos
  */
 @Entity
 @Table(name = "evento")
@@ -38,7 +38,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e")
     , @NamedQuery(name = "Evento.findById", query = "SELECT e FROM Evento e WHERE e.id = :id")
     , @NamedQuery(name = "Evento.findByFechaInicio", query = "SELECT e FROM Evento e WHERE e.fechaInicio = :fechaInicio")
-    , @NamedQuery(name = "Evento.findByFechaFin", query = "SELECT e FROM Evento e WHERE e.fechaFin = :fechaFin")})
+    , @NamedQuery(name = "Evento.findByFechaFin", query = "SELECT e FROM Evento e WHERE e.fechaFin = :fechaFin")
+    , @NamedQuery(name = "Evento.findByEstado", query = "SELECT e FROM Evento e WHERE e.estado = :estado")})
 public class Evento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -58,6 +59,9 @@ public class Evento implements Serializable {
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFin;
+    @Basic(optional = false)
+    @Column(name = "estado")
+    private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento1")
     private List<Agenda> agendaList;
     @JoinColumn(name = "actividad", referencedColumnName = "id")
@@ -74,10 +78,11 @@ public class Evento implements Serializable {
         this.id = id;
     }
 
-    public Evento(Integer id, String descripcion, Date fechaInicio) {
+    public Evento(Integer id, String descripcion, Date fechaInicio, String estado) {
         this.id = id;
         this.descripcion = descripcion;
         this.fechaInicio = fechaInicio;
+        this.estado = estado;
     }
 
     public Integer getId() {
@@ -110,6 +115,14 @@ public class Evento implements Serializable {
 
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     @XmlTransient
@@ -159,7 +172,7 @@ public class Evento implements Serializable {
 
     @Override
     public String toString() {
-        return "paquete.Evento[ id=" + id + " ]";
+        return "co.edu.usbbog.musb.musbws.model.Evento[ id=" + id + " ]";
     }
     
 }

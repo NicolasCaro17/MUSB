@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author nico_
+ * @author nicos
  */
 @Entity
 @Table(name = "agenda")
@@ -114,7 +114,7 @@ public class Agenda implements Serializable {
 
     @Override
     public String toString() {
-        return "paquete.Agenda[ agendaPK=" + agendaPK + " ]";
+        return "co.edu.usbbog.musb.musbws.model.Agenda[ agendaPK=" + agendaPK + " ]";
     }
     
 }

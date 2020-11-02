@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author nico_
+ * @author nicos
  */
 @Entity
 @Table(name = "programa")
@@ -167,7 +167,7 @@ public class Programa implements Serializable {
 
     @Override
     public String toString() {
-        return "paquete.Programa[ id=" + id + " ]";
+        return "co.edu.usbbog.musb.musbws.model.Programa[ id=" + id + " ]";
     }
     
 }

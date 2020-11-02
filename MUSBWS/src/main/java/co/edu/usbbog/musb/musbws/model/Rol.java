@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author nico_
+ * @author nicos
  */
 @Entity
 @Table(name = "rol")
@@ -106,7 +106,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "paquete.Rol[ id=" + id + " ]";
+        return "co.edu.usbbog.musb.musbws.model.Rol[ id=" + id + " ]";
     }
     
 }

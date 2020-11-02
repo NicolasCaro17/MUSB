@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.usbbog.musb.musbws.model.Chat;
+import co.edu.usbbog.musb.musbws.model.Usuario;
 import co.edu.usbbog.musb.musbws.repository.IChatRepository;
 
 @Service
@@ -17,8 +18,12 @@ public class ChatService implements IChatService{
 	@Override
 	public String crearChat(Chat chat) {
 		try {
-			ChatRepo.save(chat);
-			return "Se guardo el chat";
+			if(ChatRepo.existsById(chat.getId())) {
+				ChatRepo.save(chat);
+				return "Se guardo el chat";
+			}else {
+				return "No se guardo el chat";
+			}
 		} catch (IllegalArgumentException e) {
 			return "No se guardo el chat" + e.getMessage();
 		}
@@ -42,9 +47,9 @@ public class ChatService implements IChatService{
             if(ChatRepo.existsById(chat.getId())) {
             	ChatRepo.delete(chat);
             	ChatRepo.save(chat);
-                return "Se modifico el rol";
+                return "Se modifico el chat";
             }else {
-                return "No se encontro el rol";
+                return "No se encontro el chat";
             }
         } catch (IllegalArgumentException e) {
             return "No se encontro el rol: " + e.getMessage();
@@ -66,12 +71,12 @@ public class ChatService implements IChatService{
         try {
             if (ChatRepo.existsById(chat.getId())) {
             	ChatRepo.delete(chat);
-            return "Se elimino el rol";
+            return "Se elimino el chat";
             }else {
-                return "El rol no existe";
+                return "El chat no existe";
             }
         } catch (IllegalArgumentException e) {
-            return "No se elimino el rol: " + e.getMessage();
+            return "No se elimino el chat: " + e.getMessage();
         }
 	}
 
@@ -90,6 +95,26 @@ public class ChatService implements IChatService{
 		
 	}
 	}
+
+	@Override
+	public List<Chat> getNotificaciones(Usuario user) {
+		List<Chat> chatSinVer= ChatRepo.findByEstadoAndRecibe("enviado", user);
+		return chatSinVer;
+	}
+
+	@Override
+	public List<Chat> leerMensaje(Usuario user) {
+		List<Chat> chatListos= ChatRepo.findByEstadoAndRecibe("enviado", user);
+		for (Chat chat : chatListos) {
+			chat.setEstado("leido");
+			ChatRepo.save(chat);
+		}
+		return chatListos;
+	}
+
+
+
+
 
 
 

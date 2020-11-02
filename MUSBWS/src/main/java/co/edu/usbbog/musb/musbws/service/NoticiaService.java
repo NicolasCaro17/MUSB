@@ -17,9 +17,9 @@ public class NoticiaService implements INoticiaService {
 	public String crearNoticia(Noticia noticia) {
 		try {
 			NotiRepo.save(noticia);
-			return " Se agrego la noticia";
+			return "Se agrego la noticia";
 		} catch (IllegalArgumentException e) {
-			return " Se agrego la noticia" + e.getMessage();
+			return "No Se agrego la noticia" + e.getMessage();
 		}
 
 	}
@@ -66,12 +66,12 @@ public class NoticiaService implements INoticiaService {
 		try {
 			if (NotiRepo.existsById(noticia.getId())) {
 				NotiRepo.delete(noticia);
-				return "Se elimino el rol";
+				return "Se elimino noticia";
 			} else {
-				return "El rol no existe";
+				return "La noticia existe";
 			}
 		} catch (IllegalArgumentException e) {
-			return "No se elimino el rol: " + e.getMessage();
+			return "No se elimino noticia: " + e.getMessage();
 		}
 	}
 
@@ -89,5 +89,11 @@ public class NoticiaService implements INoticiaService {
 			return null;
 		}
 	}
+
+	//@Override
+	//public List<Noticia> getNotificaciones(Usuario user) {
+	//	List<Noticia> NoticiaSinVer= NotiRepo.findByEstadoAndRecibe("enviado", user);
+	//	return NoticiaSinVer;
+	//}
 
 }

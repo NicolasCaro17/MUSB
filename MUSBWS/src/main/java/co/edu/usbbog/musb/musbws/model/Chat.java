@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author nico_
+ * @author nicos
  */
 @Entity
 @Table(name = "chat")
@@ -142,7 +142,7 @@ public class Chat implements Serializable {
 
     @Override
     public String toString() {
-        return "paquete.Chat[ id=" + id + " ]";
+        return "co.edu.usbbog.musb.musbws.model.Chat[ id=" + id + " ]";
     }
     
 }

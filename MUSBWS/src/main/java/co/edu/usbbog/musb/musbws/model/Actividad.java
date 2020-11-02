@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author nico_
+ * @author nicos
  */
 @Entity
 @Table(name = "actividad")
@@ -128,7 +128,7 @@ public class Actividad implements Serializable {
 
     @Override
     public String toString() {
-        return "paquete.Actividad[ id=" + id + " ]";
+        return "co.edu.usbbog.musb.musbws.model.Actividad[ id=" + id + " ]";
     }
     
 }

@@ -1,5 +1,6 @@
 package co.edu.usbbog.musb.musbws.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -20,7 +21,8 @@ public class ChatController {
 	@PostMapping("/crearChat")
 	public String CrearChat(@RequestBody Chat chat) {
 		JSONObject respuesta = new JSONObject();
-		if (chatService.crearChat(chat).equals("Se guardo el Chat")) {
+		chat.setMarcaTiempo(new Date());
+		if (chatService.crearChat(chat).equals("Se guardo el chat")) {
 			respuesta.put("respuesta", true);
 			return respuesta.toString();
 		} else {
